@@ -9,14 +9,14 @@ bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 logger = telebot.logger
 logger.setLevel(logging.DEBUG)
-
+'''
 @bot.message_handler(commands=["start"])
 def start(message):
     username = message.from_user.username
     bot.reply_to(message, f"Hello, {username}!")
-    bot.send_message(message.chat.id, message)
-
+    #bot.send_message(message.chat.id, message)
 '''
+
 @bot.message_handler(commands=['start'])
 def start(message):
     #bot.send_message(message.chat.id, message)
@@ -54,12 +54,12 @@ def get_user_text(message):
         @bot.message_handler(content_types=['contact'])
         def contact(message):
             if message.contact is not None:
-                bot.forward_message(TO_CHAT_ID, message.chat.id, message.message_id)
-                bot.send_message(TO_CHAT_ID, Info)
+                bot.forward_message(CHAT_ID, message.chat.id, message.message_id)
+                bot.send_message(CHAT_ID, Info)
                 bot.send_message(message.chat.id, 'Заявка принята. Очень скоро мы позвоним вам. \n Если вам нужно что-то ещё, нажмите /start', reply_markup=types.ReplyKeyboardRemove())
     else:
         bot.send_message(message.chat.id, 'Что-то пошло не так... \n Нажмите /start и начните сначала')
-'''
+
 @server.route(f"/{TOKEN}", methods=["POST"])
 def redirect_message():
     json_string = request.get_data().decode("utf-8")
