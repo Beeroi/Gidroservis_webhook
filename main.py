@@ -14,7 +14,7 @@ logger.setLevel(logging.DEBUG)
 def start(message):
     username = message.from_user.username
     bot.reply_to(message, f"Hello, {username}!")
-    bot.send_message(message)
+    bot.send_message(message.chat.id, message)
 
 '''
 @bot.message_handler(commands=['start'])
