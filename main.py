@@ -16,7 +16,7 @@ def start(message):
     bot.reply_to(message, f"Hello, {username}!")
     #bot.send_message(message.chat.id, message)
 '''
-Info = "None"
+
 @bot.message_handler(commands=['start'])
 def start(message):
     #bot.send_message(message.chat.id, message)
@@ -44,7 +44,7 @@ def get_user_text(message):
         btn_shtok = types.KeyboardButton("Шток")
         btn_raspred = types.KeyboardButton("Гидрораспределитель")
         markup.add(btn_gidromotor, btn_gidrocilindr, btn_dvigatel, btn_kovsh, btn_shtok, btn_raspred)
-        Info = f"{message.text}"
+        info = f"{message.text}"
         bot.send_message(message.chat.id, 'Что вы хотите отремонтировать?', reply_markup=markup)
     elif message.text == "Гидромотор" or message.text == "Гидроцилиндр" or message.text == "Дизельный двигатель" or message.text == "Ковш" or message.text == "Шток" or message.text == "Гидрораспределитель" or message.text == "Сальник" or message.text == "Манжет":
         keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
@@ -55,7 +55,7 @@ def get_user_text(message):
         def contact(message):
             if message.contact is not None:
                 bot.forward_message(CHAT_ID, message.chat.id, message.message_id)
-                bot.send_message(CHAT_ID, Info)
+                bot.send_message(CHAT_ID, info)
                 bot.send_message(message.chat.id, 'Заявка принята. Очень скоро мы позвоним вам. \nЕсли вам нужно что-то ещё, нажмите /start', reply_markup=types.ReplyKeyboardRemove())
     else:
         bot.send_message(message.chat.id, 'Что-то пошло не так... \nНажмите /start и начните сначала')
