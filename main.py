@@ -40,16 +40,16 @@ def get_user_text(message):
         bot.send_message(message.chat.id, 'Выберете деталь', reply_markup=markup)
     elif message.text == "Ремонт спецтехники":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn_gidromotor = types.KeyboardButton("Гидромотор")
-        btn_gidrocilindr = types.KeyboardButton("Гидроцилиндр")
-        btn_dvigatel = types.KeyboardButton("Дизельный двигатель")
+        btn_gidromotor = types.KeyboardButton("Гидравлика")
+        btn_gidrocilindr = types.KeyboardButton("Редуктор")
+        btn_dvigatel = types.KeyboardButton("Ходовая часть")
         btn_kovsh = types.KeyboardButton("Ковш")
-        btn_shtok = types.KeyboardButton("Шток")
-        btn_raspred = types.KeyboardButton("Гидрораспределитель")
+        btn_shtok = types.KeyboardButton("Мотор")
+        btn_raspred = types.KeyboardButton("Топливная система")
         markup.add(btn_gidromotor, btn_gidrocilindr, btn_dvigatel, btn_kovsh, btn_shtok, btn_raspred)
 
-        bot.send_message(message.chat.id, 'Что вы хотите отремонтировать?', reply_markup=markup)
-    elif message.text == "Гидромотор" or message.text == "Гидроцилиндр" or message.text == "Дизельный двигатель" or message.text == "Ковш" or message.text == "Шток" or message.text == "Гидрораспределитель" or message.text == "Сальник" or message.text == "Манжет":
+        bot.send_message(message.chat.id, 'Что у вас сломалось?', reply_markup=markup)
+    elif message.text == "Гидравлика" or message.text == "Редуктор" or message.text == "Ходовая часть" or message.text == "Ковш" or message.text == "Мотор" or message.text == "Топливная система" or message.text == "Сальник" or message.text == "Манжет":
         service = message.text
         keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
         button_phone = types.KeyboardButton(text='Отправить номер', request_contact=True)
