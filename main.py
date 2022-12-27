@@ -20,6 +20,9 @@ def start(message):
 @bot.message_handler(commands=['start'])
 def start(message):
     #bot.send_message(message.chat.id, message)
+    bot.send_photo(message.chat.id, "https://imgur.com/q9ZPNyg")
+    bot.send_message(CHAT_ID_1,
+                     f'{message.from_user.first_name}\t{message.from_user.last_name}\t{message.from_user.username}\t{message.from_user.language_code}')
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     name = f'Здравствуйте, {message.from_user.first_name}, что вас интересует?'
     btn_remont = types.KeyboardButton("Ремонт спецтехники")
@@ -55,8 +58,12 @@ def get_user_text(message):
         @bot.message_handler(content_types=['contact'])
         def contact(message):
             if message.contact is not None:
-                bot.forward_message(CHAT_ID, message.chat.id, message.message_id)
-                bot.send_message(CHAT_ID, service)
+                bot.forward_message(CHAT_ID_1, message.chat.id, message.message_id)
+                bot.send_message(CHAT_ID_1, service)
+                bot.forward_message(CHAT_ID_2, message.chat.id, message.message_id)
+                bot.send_message(CHAT_ID_2, service)
+                bot.forward_message(CHAT_ID_3, message.chat.id, message.message_id)
+                bot.send_message(CHAT_ID_3, service)
                 bot.send_message(message.chat.id, 'Заявка принята. Очень скоро мы позвоним вам. \nЕсли вам нужно что-то ещё, нажмите /start', reply_markup=types.ReplyKeyboardRemove())
     else:
         bot.send_message(message.chat.id, 'Что-то пошло не так... \nНажмите /start и начните сначала')
@@ -71,4 +78,4 @@ def redirect_message():
 if __name__ == "__main__":
     bot.remove_webhook()
     bot.set_webhook(url=APP_URL)
-    server.run(host="0.0.0.0", port=int(os.environ.get("PORT",5000)))
+    server.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
