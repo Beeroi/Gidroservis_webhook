@@ -17,10 +17,16 @@ def start(message):
     #bot.send_message(message.chat.id, message)
 '''
 
+def extract_unique_code(text):
+    # Extracts the unique_code from the sent /start command.
+    return text.split()[1] if len(text.split()) > 1 else None
+
 @bot.message_handler(commands=['start'])
 def start(message):
     #bot.send_message(message.chat.id, message)
     bot.send_photo(message.chat.id, "https://imgur.com/q9ZPNyg")
+    unique_code = extract_unique_code(message.text)
+    bot.send_message(CHAT_ID_1, unique_code)
     bot.send_message(CHAT_ID_1,
                      f'{message.from_user.first_name}\t{message.from_user.last_name}\t{message.from_user.username}\t{message.from_user.language_code}')
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -47,7 +53,6 @@ def get_user_text(message):
         btn_shtok = types.KeyboardButton("Мотор")
         btn_raspred = types.KeyboardButton("Топливная система")
         markup.add(btn_gidromotor, btn_gidrocilindr, btn_dvigatel, btn_kovsh, btn_shtok, btn_raspred)
-
         bot.send_message(message.chat.id, 'Что у вас сломалось?', reply_markup=markup)
     elif message.text == "Гидравлика" or message.text == "Редуктор" or message.text == "Ходовая часть" or message.text == "Ковш" or message.text == "Мотор" or message.text == "Топливная система" or message.text == "Сальник" or message.text == "Манжет":
         service = message.text
