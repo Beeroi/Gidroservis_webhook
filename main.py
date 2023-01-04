@@ -35,8 +35,8 @@ def start(message):
     btn_remont = types.KeyboardButton("Ремонт спецтехники")
     btn_magaz = types.KeyboardButton("Магазин запчастей")
     btn_contact = types.KeyboardButton("Контакты")
-    markup.add(btn_contact)
     markup.add(btn_remont, btn_magaz)
+    markup.add(btn_contact)
     bot.send_message(message.chat.id, name, reply_markup=markup)
 
 @bot.message_handler(content_types=['text'])
