@@ -33,7 +33,9 @@ def start(message):
     name = f'Здравствуйте, {message.from_user.first_name}, что вас интересует?'
     btn_remont = types.KeyboardButton("Ремонт спецтехники")
     btn_magaz = types.KeyboardButton("Магазин запчастей")
+    btn_contact = types.KeyboardButton("Контакты")
     markup.add(btn_remont, btn_magaz)
+    markup.add(btn_contact)
     bot.send_message(message.chat.id, name, reply_markup=markup)
 
 @bot.message_handler(content_types=['text'])
@@ -54,6 +56,8 @@ def get_user_text(message):
         btn_raspred = types.KeyboardButton("Топливная система")
         markup.add(btn_gidromotor, btn_gidrocilindr, btn_dvigatel, btn_kovsh, btn_shtok, btn_raspred)
         bot.send_message(message.chat.id, 'Что у вас сломалось?', reply_markup=markup)
+    elif message.text == "Контакты":
+        bot.send_message(message.chat.id, "По всем вопросам вы можете написать сюда @Bee_roi")
     elif message.text == "Гидравлика" or message.text == "Редуктор" or message.text == "Ходовая часть" or message.text == "Ковш" or message.text == "Мотор" or message.text == "Топливная система" or message.text == "Сальник" or message.text == "Манжет":
         service = message.text
         keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
