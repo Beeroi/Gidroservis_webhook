@@ -26,7 +26,8 @@ def start(message):
     #bot.send_message(message.chat.id, message)
     bot.send_photo(message.chat.id, "https://imgur.com/q9ZPNyg")
     unique_code = extract_unique_code(message.text)
-    bot.send_message(CHAT_ID_1, unique_code)
+    if unique_code != None:
+        bot.send_message(CHAT_ID_1, unique_code)
     bot.send_message(CHAT_ID_1,
                      f'{message.from_user.first_name}\t{message.from_user.last_name}\t{message.from_user.username}\t{message.from_user.language_code}')
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -34,8 +35,8 @@ def start(message):
     btn_remont = types.KeyboardButton("Ремонт спецтехники")
     btn_magaz = types.KeyboardButton("Магазин запчастей")
     btn_contact = types.KeyboardButton("Контакты")
-    markup.add(btn_remont, btn_magaz)
     markup.add(btn_contact)
+    markup.add(btn_remont, btn_magaz)
     bot.send_message(message.chat.id, name, reply_markup=markup)
 
 @bot.message_handler(content_types=['text'])
@@ -75,7 +76,7 @@ def get_user_text(message):
                 bot.send_message(CHAT_ID_3, service)
                 bot.send_message(message.chat.id, 'Заявка принята. Очень скоро мы позвоним вам. \nЕсли вам нужно что-то ещё, нажмите /start', reply_markup=types.ReplyKeyboardRemove())
     else:
-        bot.send_message(message.chat.id, 'Что-то пошло не так... \nНажмите /start и начните сначала')
+        bot.send_message(message.chat.id, 'Чтобы поговорить с реальным человеком, напишите сюда @Beeroi\nЛибо нажмите /start и начните сначала')
 
 @server.route(f"/{TOKEN}", methods=["POST"])
 def redirect_message():
