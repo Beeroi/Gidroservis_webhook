@@ -61,7 +61,7 @@ def get_user_text(message):
     elif message.text == "Контакты":
         bot.send_message(message.chat.id, "По всем вопросам вы можете написать сюда @Bee_roi")
     elif message.text == "Сайт":
-        bot.send_message(message.chat.id, "Наш сайт находится по адресу gidroservis.uz")
+        bot.send_message(message.chat.id, "Наш сайт gidroservis.uz")
     elif message.text == "Гидравлика" or message.text == "Редуктор" or message.text == "Ходовая часть" or message.text == "Ковш" or message.text == "Мотор" or message.text == "Топливная система" or message.text == "Сальник" or message.text == "Манжет":
         service = message.text
         keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
@@ -73,10 +73,10 @@ def get_user_text(message):
             if message.contact is not None:
                 bot.forward_message(CHAT_ID_1, message.chat.id, message.message_id)
                 bot.send_message(CHAT_ID_1, service)
-                bot.forward_message(CHAT_ID_2, message.chat.id, message.message_id)
-                bot.send_message(CHAT_ID_2, service)
-                bot.forward_message(CHAT_ID_3, message.chat.id, message.message_id)
-                bot.send_message(CHAT_ID_3, service)
+                #bot.forward_message(CHAT_ID_2, message.chat.id, message.message_id)
+                #bot.send_message(CHAT_ID_2, service)
+                #bot.forward_message(CHAT_ID_3, message.chat.id, message.message_id)
+                #bot.send_message(CHAT_ID_3, service)
                 bot.send_message(message.chat.id, 'Заявка принята. Очень скоро мы позвоним вам. \nЕсли вам нужно что-то ещё, нажмите /start\nТак же можете посетить наш сайт gidroservis.uz', reply_markup=types.ReplyKeyboardRemove())
     else:
         bot.send_message(message.chat.id, 'Чтобы поговорить с реальным человеком, напишите сюда @Beeroi\nЛибо нажмите /start и начните сначала')
