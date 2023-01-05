@@ -77,7 +77,7 @@ def get_user_text(message):
                 #bot.send_message(CHAT_ID_2, service)
                 #bot.forward_message(CHAT_ID_3, message.chat.id, message.message_id)
                 #bot.send_message(CHAT_ID_3, service)
-                bot.send_message(message.chat.id, 'Заявка принята. Очень скоро мы позвоним вам. \nЕсли вам нужно что-то ещё, нажмите /start\nТак же можете посетить наш сайт gidroservis.uz', reply_markup=types.ReplyKeyboardRemove())
+                bot.send_message(message.chat.id, 'Заявка принята. Очень скоро мы позвоним вам. \nЕсли вам нужно что-то ещё, нажмите /start\n\nТак же можете посетить наш сайт gidroservis.uz', reply_markup=types.ReplyKeyboardRemove())
     else:
         bot.send_message(message.chat.id, 'Чтобы поговорить с реальным человеком, напишите сюда @Beeroi\nЛибо нажмите /start и начните сначала')
 
