@@ -35,8 +35,9 @@ def start(message):
     btn_remont = types.KeyboardButton("Ремонт спецтехники")
     btn_magaz = types.KeyboardButton("Магазин запчастей")
     btn_contact = types.KeyboardButton("Контакты")
+    btn_site = types.KeyboardButton("Сайт")
     markup.add(btn_remont, btn_magaz)
-    markup.add(btn_contact)
+    markup.add(btn_contact, btn_site)
     bot.send_message(message.chat.id, name, reply_markup=markup)
 
 @bot.message_handler(content_types=['text'])
@@ -59,6 +60,8 @@ def get_user_text(message):
         bot.send_message(message.chat.id, 'Что у вас сломалось?', reply_markup=markup)
     elif message.text == "Контакты":
         bot.send_message(message.chat.id, "По всем вопросам вы можете написать сюда @Bee_roi")
+    elif message.text == "Сайт":
+        bot.send_message(message.chat.id, "Наш сайт находится по адресу gidroservis.uz")
     elif message.text == "Гидравлика" or message.text == "Редуктор" or message.text == "Ходовая часть" or message.text == "Ковш" or message.text == "Мотор" or message.text == "Топливная система" or message.text == "Сальник" or message.text == "Манжет":
         service = message.text
         keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
@@ -74,7 +77,7 @@ def get_user_text(message):
                 bot.send_message(CHAT_ID_2, service)
                 bot.forward_message(CHAT_ID_3, message.chat.id, message.message_id)
                 bot.send_message(CHAT_ID_3, service)
-                bot.send_message(message.chat.id, 'Заявка принята. Очень скоро мы позвоним вам. \nЕсли вам нужно что-то ещё, нажмите /start', reply_markup=types.ReplyKeyboardRemove())
+                bot.send_message(message.chat.id, 'Заявка принята. Очень скоро мы позвоним вам. \nЕсли вам нужно что-то ещё, нажмите /start\nТак же можете посетить наш сайт gidroservis.uz', reply_markup=types.ReplyKeyboardRemove())
     else:
         bot.send_message(message.chat.id, 'Чтобы поговорить с реальным человеком, напишите сюда @Beeroi\nЛибо нажмите /start и начните сначала')
 
